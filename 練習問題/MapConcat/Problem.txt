@@ -1,0 +1,15 @@
+mapconcat(function, sequence, separator) 
+
+mapconcat 関数は 3 つの引数をとります。この関数は、sequence の各要素に function を適用して、その結果を繋げます。
+そのとき各要素のセパレータは separator となります。
+
+function は 1 つの引数を受け取り、文字列を返す関数です。
+
+>>> mapconcat(str, ["foo", "bar", "baz"], "-")
+'foo-bar-baz'
+>>> mapconcat(str, [1, 2, 3], " ")
+'1 2 3'
+>>> mapconcat(lambda c: c*3, "abc", "")
+'aaabbbccc'
+>>> mapconcat(lambda s: s.rjust(10), ["foo", "bar", "baz"], "")
+'       foo       bar       baz'

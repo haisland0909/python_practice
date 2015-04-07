@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>d982a1e3-95e0-4968-8c13-9611abf2cbf4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>RandList1.py</StartupFile>
+    <StartupFile>randlist1.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="RandList1.py" />
+    <Compile Include="randlist1.py" />
+    <Compile Include="testRandList1.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Problem.txt" />

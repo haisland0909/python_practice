@@ -6,8 +6,8 @@ def randlist(x = 1):
     for var in range(0, x):
         insertNum = randint(1, 100)
         a.append(insertNum)
-    print a
+    return a
 
-randlist(10)
-randlist(5)
-randlist(3)
+print randlist(10)
+print randlist(5)
+print randlist(3)

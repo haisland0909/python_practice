@@ -1,4 +1,4 @@
-# coding:utf-8
+# coding:cp932
 from random import randint
 # —”ƒŠƒXƒg‚ğì¬
 def randlist(x = 1, upper = 100, lower = 0):
@@ -6,8 +6,8 @@ def randlist(x = 1, upper = 100, lower = 0):
     for var in range(0, x):
         insertNum = randint(lower, upper)
         a.append(insertNum)
-    print a
+    return a
 
-randlist(10)
-randlist(3, upper=50)  
-randlist(6, lower=20, upper=50)  
+print randlist(10)
+print randlist(3, upper=50)  
+print randlist(6, lower=20, upper=50)  

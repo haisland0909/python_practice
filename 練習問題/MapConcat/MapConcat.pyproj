@@ -3,15 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>270d428d-24a7-4360-8384-6b8cb0059215</ProjectGuid>
+    <ProjectGuid>054a3345-ab50-4512-9bd1-a80bbcb2a3f4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>randlist2.py</StartupFile>
+    <StartupFile>mapconcat.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>RandList2</Name>
-    <RootNamespace>RandList2</RootNamespace>
+    <Name>MapConcat</Name>
+    <RootNamespace>MapConcat</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,10 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="randlist2.py" />
-    <Compile Include="testrandlist2.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="mapconcat.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Problem.txt" />

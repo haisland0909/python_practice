@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1b2947be-300e-4860-9993-6413960a30d6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Qsort.py</StartupFile>
+    <StartupFile>qsort.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Qsort.py" />
+    <Compile Include="qsort.py" />
+    <Compile Include="testqsort.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Problem.txt" />
