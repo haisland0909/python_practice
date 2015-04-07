@@ -1,0 +1,9 @@
+”äŠrŠÖ”‚ðŠÖ”‚É“n‚µ‚Äƒ\[ƒg
+>> qsort(lambda x, y: x < y, [2, 4, -90, 3, 10])
+[-90, 2, 3, 4, 10]
+>> qsort(lambda x, y: x > y, [2, 4, -90, 3, 10])
+[10, 4, 3, 2, -90]
+
+•¶Žš—ñ‚ð‚»‚Ì’·‚³‚Ì‡‚Éƒ\[ƒg‚·‚é”äŠrŠÖ” slencmp ‚ðì¬
+>>> qsort(slencmp, ["short", "double", "int", "long"])
+['int', 'long', 'short', 'double']
