@@ -1,5 +1,6 @@
+# coding:cp932
 from random import randint
-
+# —”ƒŠƒXƒg‚ğì¬
 def randlist(x = 1):
     a = []
     for var in range(0, x):
