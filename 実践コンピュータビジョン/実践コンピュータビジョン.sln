@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Web
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "pilsample", "pilsample\pilsample.pyproj", "{162475BC-CBBE-4CE1-A3B3-3AEF93AA28E1}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CommonImage", "CommonImage\CommonImage.pyproj", "{481FEB0A-6A24-40A7-8B40-56B7BB949964}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "pylabsample", "pylabsample\pylabsample.pyproj", "{29C897D8-C8FD-4664-B585-F615AEB3E6A5}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "numpysample", "numpysample\numpysample.pyproj", "{FCD8CD83-B82C-40A7-9C27-D73843F84469}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "prob1-1", "prob1-1\prob1-1.pyproj", "{EFE2055D-0EE8-4F88-9518-1365CABF4CAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{162475BC-CBBE-4CE1-A3B3-3AEF93AA28E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{162475BC-CBBE-4CE1-A3B3-3AEF93AA28E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481FEB0A-6A24-40A7-8B40-56B7BB949964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481FEB0A-6A24-40A7-8B40-56B7BB949964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C897D8-C8FD-4664-B585-F615AEB3E6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C897D8-C8FD-4664-B585-F615AEB3E6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD8CD83-B82C-40A7-9C27-D73843F84469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD8CD83-B82C-40A7-9C27-D73843F84469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFE2055D-0EE8-4F88-9518-1365CABF4CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFE2055D-0EE8-4F88-9518-1365CABF4CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
