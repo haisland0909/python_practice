@@ -7,7 +7,3 @@ def randlist(x = 1):
         insertNum = randint(1, 100)
         a.append(insertNum)
     return a
-
-print randlist(10)
-print randlist(5)
-print randlist(3)

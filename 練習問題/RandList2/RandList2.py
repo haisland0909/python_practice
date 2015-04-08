@@ -8,6 +8,3 @@ def randlist(x = 1, upper = 100, lower = 0):
         a.append(insertNum)
     return a
 
-print randlist(10)
-print randlist(3, upper=50)  
-print randlist(6, lower=20, upper=50)  

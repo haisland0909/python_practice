@@ -10,8 +10,3 @@ def mapconcat(function, sequence, separator):
 
     return res
 
-print mapconcat(str, ["foo", "bar", "baz"], "-")
-print mapconcat(str, [1, 2, 3], " ")
-print mapconcat(lambda c: c*3, "abc", "")
-print mapconcat(lambda s: s.rjust(10), ["foo", "bar", "baz"], "")
-
