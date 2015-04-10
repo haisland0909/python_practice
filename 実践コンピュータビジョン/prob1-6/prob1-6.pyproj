@@ -3,15 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>d2ac75bd-819d-4132-855a-1c8c611898de</ProjectGuid>
+    <ProjectGuid>3137faf9-8c5f-47e8-9109-5a55209630bc</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>prob14.py</StartupFile>
+    <StartupFile>prob16.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>prob1-4</Name>
-    <RootNamespace>prob1-4</RootNamespace>
+    <Name>prob1-6</Name>
+    <RootNamespace>prob1-6</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,13 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="prob14.py" />
-    <Compile Include="testprob14.py">
+    <Compile Include="prob16.py" />
+    <Compile Include="testprob16.py">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Problem.txt" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

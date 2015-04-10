@@ -4,6 +4,7 @@ sys.path.append('../numpysample')
 # ここまでおまじない
 import numpy
 from scipy.ndimage import filters
+from scipy.misc import imsave
 from numpysample import NumpySample
 
 class ScipySample(NumpySample):
@@ -42,3 +43,6 @@ class ScipySample(NumpySample):
     def get_grad_mag(self):
 
         return self._image_grad_mag
+
+    def save(self, name):
+        imsave(name, self._array_image)

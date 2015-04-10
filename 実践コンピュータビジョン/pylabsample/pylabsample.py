@@ -10,3 +10,8 @@ def create_contour(im, name):
     pylab.axis('off')
     pylab.savefig(name)
 
+def create_hist(arr, name):
+    pylab.figure()
+    pylab.hist(arr, 100)
+    pylab.savefig(name)
+

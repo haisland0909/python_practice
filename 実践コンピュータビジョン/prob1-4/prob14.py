@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
+ï»¿# -*- coding: utf-8 -*-
 import sys, numpy
 sys.path.append('../scipysample')
-# ‚±‚±‚Ü‚Å‚¨‚Ü‚¶‚È‚¢
+# ã“ã“ã¾ã§ãŠã¾ã˜ãªã„
 from scipysample import ScipySample
 from PIL import Image
 
 class Prob14(ScipySample):
-    # ‰æ‘œ‚ÌŒù”z‚æ‚è—ÖŠs‚ğ’Šo‚·‚é
+    # ç”»åƒã®å‹¾é…ã‚ˆã‚Šè¼ªéƒ­ã‚’æŠ½å‡ºã™ã‚‹
     def create_edge(self):
         self.calc_gradiation(1)
         mag = self.get_grad_mag()
