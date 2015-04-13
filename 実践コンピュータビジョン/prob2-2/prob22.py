@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
+ï»¿# -*- coding: utf-8 -*-
 import sys, numpy
 sys.path.append('../harrissample')
-# ‚±‚±‚Ü‚Å‚¨‚Ü‚¶‚È‚¢
+# ã“ã“ã¾ã§ãŠã¾ã˜ãªã„
 from harrissample import HarrisSample
 
 class Prob22(HarrisSample):
