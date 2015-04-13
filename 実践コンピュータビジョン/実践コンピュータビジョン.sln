@@ -23,6 +23,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "prob1-4", "prob1-4\prob1-4.
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "prob1-6", "prob1-6\prob1-6.pyproj", "{3137FAF9-8C5F-47E8-9109-5A55209630BC}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "harrissample", "harrissample\harrissample.pyproj", "{9B4D9AA6-16BB-442B-BB2A-CC90EF99F4DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,8 @@ Global
 		{D2AC75BD-819D-4132-855A-1C8C611898DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3137FAF9-8C5F-47E8-9109-5A55209630BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3137FAF9-8C5F-47E8-9109-5A55209630BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4D9AA6-16BB-442B-BB2A-CC90EF99F4DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4D9AA6-16BB-442B-BB2A-CC90EF99F4DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

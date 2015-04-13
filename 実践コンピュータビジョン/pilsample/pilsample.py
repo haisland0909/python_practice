@@ -6,8 +6,8 @@ class PilSample(object):
     NAME_SAMPLE_IMAGE = "sample_image.jpg"
 
     def __init__(self, name = "sample_image.jpg"):
-        self._image_obj = Image.open("../CommonImage/%s" % name)
-        self._is_color  = True
+        self._image_obj          = Image.open("../CommonImage/%s" % name)
+        self._is_color           = True
 
 
     def get_image(self):

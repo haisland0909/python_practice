@@ -2,6 +2,7 @@ import unittest, prob12
 class Test_testprob12(unittest.TestCase):
     def test_add_unsharped_mask(self):
         obj   = prob12.Prob12("blurred_image.jpg")
+        obj.save('problem_base.jpg')
         sd_1  = obj.add_unsharped_mask(1)
         obj.save('sd_1.jpg')
         obj   = prob12.Prob12("blurred_image.jpg")

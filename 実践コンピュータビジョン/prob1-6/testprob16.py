@@ -10,6 +10,7 @@ class Test_testprob16(unittest.TestCase):
     def test_get_label(self):
         obj = prob16.Prob16("many_object.jpg")
         obj.convert_binary(128)
+        obj.save("base_image.jpg")
         obj.get_label()
         obj.save("label_image.jpg")
         pylabsample.create_hist(obj.get_array_image().flatten(), "size_num_hist.jpg")
