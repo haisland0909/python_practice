@@ -46,3 +46,14 @@ class ScipySample(NumpySample):
 
     def save(self, name):
         imsave(name, self._array_image)
+
+    # ガウシアンフィルターを任意の標準偏差でかける
+    def _add_gaussian_filter(self, sd):
+        g_im = self._array_image
+        if self._is_color:
+            for i in range(3):
+                g_im[:, :, i] = filters.gaussian_filter(self._array_image[:, :, i], sd)
+        else:
+            g_im = filters.gaussian_filter(self._array_image, sd)
+        self._array_image = g_im
+        self._convert_image()
