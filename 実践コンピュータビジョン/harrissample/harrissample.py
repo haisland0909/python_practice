@@ -1,17 +1,17 @@
 ﻿# -*- coding: utf-8 -*-
 import sys
-from scipy.misc.pilutil import imshow
 sys.path.append('../scipysample')
 # ここまでおまじない
 import numpy, pylab
 from scipy.ndimage import filters
+from scipy.misc import imsave
 from scipysample import ScipySample
 
 class HarrisSample(ScipySample):
     def __init__(self, name = "sample_image.jpg"):
         ScipySample.__init__(self, name)
-        self._harris_response     = numpy.zeros(self._array_image.shape)
-        self._harris_points       = []
+        self._harris_response     = None
+        self._harris_points       = None
         self._harriss_descriptors = None
 
 
@@ -34,11 +34,14 @@ class HarrisSample(ScipySample):
         Wdet = Wxx*Wyy - Wxy**2
         Wtr  = Wxx + Wyy
         numpy.seterr(divide='ignore', invalid='ignore')
-        self._harris_response = Wdet / Wtr
+        self._harris_response = numpy.nan_to_num(Wdet / Wtr)
 
     def make_harris_points(self, min_dist=10, threshold=0.1):
         """ Harris応答画像からコーナーを返す。
            min_distはコーナーや画像境界から分離する最小ピクセル数 """
+
+        if self._harris_response is None:
+            self.compute_harris_response()
         
         # 閾値thresholdを超えるコーナー候補を見つける
         harrisim         = self._harris_response
@@ -51,7 +54,7 @@ class HarrisSample(ScipySample):
         # 候補の値を得る
         candidate_values = [harrisim[c[0],c[1]] for c in coords]
         
-        # 候補をソートする
+        # 候補をソートする(候補として良い点からから順に検討)
         index = numpy.argsort(candidate_values)
         
         # 許容する点の座標を配列に格納する
@@ -67,7 +70,7 @@ class HarrisSample(ScipySample):
                     (coords[i,1] - min_dist):(coords[i,1] + min_dist)] = 0
         self._harris_points = filtered_coords
 
-    def get_harris_reponse(self):
+    def get_harris_response(self):
 
         return self._harris_response
 
@@ -77,16 +80,21 @@ class HarrisSample(ScipySample):
 
     def plot_harris_points(self, name):
         """ 画像に見つかったコーナーを描画 """
-        pylab.figure()
+        if self._harris_points is None:
+            self.make_harris_points()
+        pylab.figure(dpi=160)
         pylab.gray()
-        pylab.imshow(self._array_image)
+        pylab.imshow(self._array_image, aspect='auto')
         pylab.plot([p[1] for p in self._harris_points],[p[0] for p in self._harris_points],'*')
         pylab.axis('off')
-        pylab.savefig(name)
+        pylab.savefig(name, dpi=160)
 
-    def calc_descriptors(self, filtered_coords, wid=5):
+    def calc_descriptors(self, wid=5):
         """ 各Harriコーナ点について、点の周辺で幅 2*wid+1 の近傍ピクセル値を返す。
             （点の最小距離 min_distance > wid を仮定する）"""
+        if self._harris_points is None:
+            self.make_harris_points()
+        image = self._array_image
         desc = []
         for coords in self._harris_points:
             patch = image[coords[0]-wid:coords[0]+wid+1,
@@ -107,15 +115,19 @@ class HarrisMatch(object):
         self._append_image = None
         self._match_score  = None
 
-    def match(self ,threshold=0.5):
+    def harris_match(self ,threshold=0.5):
         """ 正規化相互相関を用いて、第1の画像の各コーナー点記述子について、
         第2の画像の対応点を選択する。"""
+        if self._image_1.get_descriptors() is None:
+            self._image_1.calc_descriptors()
         desc1 = self._image_1.get_descriptors()
+        if self._image_2.get_descriptors() is None:
+            self._image_2.calc_descriptors()
         desc2 = self._image_2.get_descriptors()
         n     = len(desc1[0])
 
         # 対応点ごとの距離
-        d = -ones((len(desc1), len(desc2)))
+        d = -(numpy.ones((len(desc1), len(desc2))))
         for i in range(len(desc1)):
             for j in range(len(desc2)):
                 d1 = (desc1[i] - numpy.mean(desc1[i])) / numpy.std(desc1[i])
@@ -126,6 +138,10 @@ class HarrisMatch(object):
 
         ndx               = numpy.argsort(-d)
         self._match_score = ndx[:,0]
+
+    def get_harris_match_score(self):
+
+        return self._match_score
 
     def appendimages(self):
         """ 2つの画像を左右に並べた画像を返す """
@@ -140,38 +156,44 @@ class HarrisMatch(object):
             im1 = numpy.concatenate((im1, numpy.zeros((rows2-rows1,im1.shape[1]))), axis=0)
         elif rows1 > rows2:
             im2 = numpy.concatenate((im2, numpy.zeros((rows1-rows2,im2.shape[1]))), axis=0)
-        # 行が同じなら、0で埋める必要はない
-        
-        self._append_image = concatenate((im1,im2), axis=1)
+        # 行が同じなら、0で埋める必要はない    
+        self._append_image = numpy.concatenate((im1,im2), axis=1)
 
     def get_append_image(self):
         
         return self._append_image
 
-    def plot_matches(self, show_below=True, name = "harris_match.jpg"):
+    def save_append_image(self, name):
+        imsave(name, self._append_image)
+
+    def plot_matches(self, name = "harris_match.jpg", show_below = True, match_maximum = None):
         """ 対応点を線で結んで画像を表示する
-        入力： im1,im2（配列形式の画像）、locs1,locs2（特徴点座標）
-        machescores（match()の出力）、
+        入力： 
         show_below（対応の下に画像を表示するならTrue）"""
-        self.appendimages()
+        if self._append_image is None:
+            self.appendimages()
         im1   = self._image_1.get_array_image()
         im2   = self._image_2.get_array_image()
         im3   = self._append_image
+        if self._image_1.get_harris_point() is None:
+            self._image_1.make_harris_points()
+        if self._image_2.get_harris_point() is None:
+            self._image_2.make_harris_points()
         locs1 = self._image_1.get_harris_point()
         locs2 = self._image_2.get_harris_point()
         if show_below:
             im3 = numpy.vstack((im3,im3))
-        
-        imshow(im3)
+        pylab.figure(dpi=160)
+        pylab.gray()
+        pylab.imshow(im3)
         
         cols1 = im1.shape[1]
+        if self._match_score is None:
+            self.harris_match()
+        if match_maximum is not None:
+            self._match_score = self._match_score[:match_maximum]
         for i,m in enumerate(self._match_score):
             if m>0: 
                 pylab.plot([locs1[i][1],locs2[m][1]+cols1],[locs1[i][0],locs2[m][0]],'c')
         pylab.axis('off')
-        pylab.savefig(name)
-
-obj = HarrisSample()
-obj.compute_harris_response()
-obj.make_harris_points()
-obj.plot_harris_points("harris_points.jpg")
+        pylab.savefig(name, dpi=160)

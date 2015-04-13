@@ -1,5 +1,4 @@
-﻿
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import sys, numpy
 sys.path.append('../scipysample')
 sys.path.append('../pylabsample')
