@@ -24,6 +24,10 @@ class MatchSample(object):
 
     def appendimages(self):
         """ 2つの画像を左右に並べた画像を返す """
+        if self._image_1.is_color():
+             self._image_1.convert_grey()
+        if self._image_2.is_color():
+             self._image_2.convert_grey()
         im1 = self._image_1.get_array_image()
         im2 = self._image_2.get_array_image()
 

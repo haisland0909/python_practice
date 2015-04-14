@@ -107,7 +107,7 @@ class SiftMatch(MatchSample):
 
         self._match_score = matchscores
 
-    def plot_matches(self, name, show_below = True):
+    def plot_matches(self, name, show_below = True, match_maximum = None):
         """ 対応点を線で結んで画像を表示する
           入力： im1,im2（配列形式の画像）、locs1,locs2（特徴点座標）
              machescores（match()の出力）、
@@ -127,8 +127,13 @@ class SiftMatch(MatchSample):
         pylab.imshow(im3, aspect = 'auto')
 
         cols1 = im1.shape[1]
+        match_num = 0
         for i,m in enumerate(self._match_score):
-            if m>0: pylab.plot([locs1[i][0],locs2[m][0]+cols1], [locs1[i][1],locs2[m][1]], 'c')
+            if m > 0 : 
+                pylab.plot([locs1[i][0],locs2[m][0]+cols1], [locs1[i][1],locs2[m][1]], 'c')
+                match_num = match_num + 1
+            if match_maximum is not None and match_num >= match_maximum:
+                break
         pylab.axis('off')
         pylab.savefig(name, dpi=160)
     

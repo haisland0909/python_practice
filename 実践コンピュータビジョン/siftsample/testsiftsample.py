@@ -22,7 +22,7 @@ class Test_testsiftsample(unittest.TestCase):
 
     def test_plot_matches(self):
         obj1 = siftsample.SiftSample()
-        obj2 = siftsample.SiftSample("cut_image.jpg")
+        obj2 = siftsample.SiftSample("reverse_image.jpg")
         obj  = siftsample.SiftMatch(obj1, obj2)
         obj.plot_matches("sift_match.jpg")
 
