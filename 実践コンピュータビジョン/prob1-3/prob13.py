@@ -16,6 +16,7 @@ class Prob13(Prob11):
                 new_im[:, :, i] = 255.0 * new_im[:, :, i] / numpy.amax(new_im[:, :, i])
         else:
             new_im = old_im / new_im
+            new_im = new_im >= 1
             new_im = 255.0 * new_im / numpy.amax(new_im)
         self._array_image = new_im
         self._convert_image()

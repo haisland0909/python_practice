@@ -25,8 +25,8 @@ class Test_testharrissample(unittest.TestCase):
         obj1 = harrissample.HarrisSample()
         obj2 = harrissample.HarrisSample("cut_image.jpg")
         obj  = harrissample.HarrisMatch(obj1, obj2)
-        obj.harris_match()
-        self.assertEqual(486, obj.get_harris_match_score()[0])
+        obj.match()
+        self.assertEqual(486, obj.get_match_score()[0])
 
     def test_appendimages(self):
         obj1 = harrissample.HarrisSample()

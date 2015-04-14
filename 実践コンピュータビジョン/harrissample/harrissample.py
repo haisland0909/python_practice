@@ -1,11 +1,13 @@
 ﻿# -*- coding: utf-8 -*-
 import sys
 sys.path.append('../scipysample')
+sys.path.append('../matchsample')
 # ここまでおまじない
 import numpy, pylab
 from scipy.ndimage import filters
 from scipy.misc import imsave
 from scipysample import ScipySample
+from matchsample import MatchSample
 
 class HarrisSample(ScipySample):
     def __init__(self, name = "sample_image.jpg"):
@@ -95,7 +97,7 @@ class HarrisSample(ScipySample):
         if self._harris_points is None:
             self.make_harris_points()
         image = self._array_image
-        desc = []
+        desc  = []
         for coords in self._harris_points:
             patch = image[coords[0]-wid:coords[0]+wid+1,
                         coords[1]-wid:coords[1]+wid+1].flatten() 
@@ -107,15 +109,12 @@ class HarrisSample(ScipySample):
         
         return self._harriss_descriptors
 
-class HarrisMatch(object):
+class HarrisMatch(MatchSample):
 
     def __init__(self, image_1 = HarrisSample(), image_2 = HarrisSample()):
-        self._image_1      = image_1
-        self._image_2      = image_2
-        self._append_image = None
-        self._match_score  = None
+        MatchSample.__init__(self, image_1, image_2)
 
-    def harris_match(self ,threshold=0.5):
+    def match(self ,threshold=0.5):
         """ 正規化相互相関を用いて、第1の画像の各コーナー点記述子について、
         第2の画像の対応点を選択する。"""
         if self._image_1.get_descriptors() is None:
@@ -139,32 +138,9 @@ class HarrisMatch(object):
         ndx               = numpy.argsort(-d)
         self._match_score = ndx[:,0]
 
-    def get_harris_match_score(self):
+    def get_match_score(self):
 
         return self._match_score
-
-    def appendimages(self):
-        """ 2つの画像を左右に並べた画像を返す """
-        im1 = self._image_1.get_array_image()
-        im2 = self._image_2.get_array_image()
-
-        # 行の少ない方を選び、空行を0で埋める
-        rows1 = im1.shape[0]
-        rows2 = im2.shape[0]
-        
-        if rows1 < rows2:
-            im1 = numpy.concatenate((im1, numpy.zeros((rows2-rows1,im1.shape[1]))), axis=0)
-        elif rows1 > rows2:
-            im2 = numpy.concatenate((im2, numpy.zeros((rows1-rows2,im2.shape[1]))), axis=0)
-        # 行が同じなら、0で埋める必要はない    
-        self._append_image = numpy.concatenate((im1,im2), axis=1)
-
-    def get_append_image(self):
-        
-        return self._append_image
-
-    def save_append_image(self, name):
-        imsave(name, self._append_image)
 
     def plot_matches(self, name = "harris_match.jpg", show_below = True, match_maximum = None):
         """ 対応点を線で結んで画像を表示する
@@ -185,11 +161,11 @@ class HarrisMatch(object):
             im3 = numpy.vstack((im3,im3))
         pylab.figure(dpi=160)
         pylab.gray()
-        pylab.imshow(im3)
+        pylab.imshow(im3, aspect = "auto")
         
         cols1 = im1.shape[1]
         if self._match_score is None:
-            self.harris_match()
+            self.match()
         if match_maximum is not None:
             self._match_score = self._match_score[:match_maximum]
         for i,m in enumerate(self._match_score):

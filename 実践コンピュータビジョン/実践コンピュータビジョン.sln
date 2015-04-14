@@ -31,6 +31,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "prob2-2", "prob2-2\prob2-2.
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "prob2-3", "prob2-3\prob2-3.pyproj", "{E6E8FEA4-0D52-482C-8902-8BEF21C8AE26}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "siftsample", "siftsample\siftsample.pyproj", "{F0660863-1AA6-4FF5-9544-59344DCA45A2}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "matchsample", "matchsample\matchsample.pyproj", "{7135E95C-A254-4765-9BC6-C9166E1F8D2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +69,10 @@ Global
 		{24B04EE3-26FB-49E8-8DA7-4143ABB1EE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6E8FEA4-0D52-482C-8902-8BEF21C8AE26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6E8FEA4-0D52-482C-8902-8BEF21C8AE26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0660863-1AA6-4FF5-9544-59344DCA45A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0660863-1AA6-4FF5-9544-59344DCA45A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7135E95C-A254-4765-9BC6-C9166E1F8D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7135E95C-A254-4765-9BC6-C9166E1F8D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
