@@ -15,6 +15,9 @@ class Test_testharrissample(unittest.TestCase):
         obj = harrissample.HarrisSample()
         obj.save("base_image.jpg")
         obj.plot_harris_points("harris_point.jpg")
+        obj = harrissample.HarrisSample("black_square.jpg")
+        obj.save("square_image.jpg")
+        obj.plot_harris_points("harris_point_square.jpg")
 
     def test_calc_descriptors(self):
         obj = harrissample.HarrisSample()
