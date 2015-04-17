@@ -1,9 +1,10 @@
 ﻿# -*- coding: utf-8 -*-
 import numpy as np
 import scipy as sp
+from scipy import signal
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
-from sklearn import datasets, cluster
+from sklearn import datasets, cluster, decomposition
 from sklearn.feature_extraction.image import grid_to_graph
 from sklearn.cluster import AgglomerativeClustering
 class KMeansSample(object):
@@ -148,3 +149,126 @@ class KMeansSample(object):
         plt.xticks(())
         plt.yticks(())
         plt.savefig("lena_ward_cluster.jpg")
+
+class DecompositionsSample(object):
+    def plot_pca(self):
+        ###############################################################################
+        # Create the data
+        
+        e = np.exp(1)
+        np.random.seed(4)
+        def pdf(x):
+            return 0.5 * (sp.stats.norm(scale=0.25 / e).pdf(x)
+                          + sp.stats.norm(scale=4 / e).pdf(x))
+        
+        y = np.random.normal(scale=0.5, size=(30000))
+        x = np.random.normal(scale=0.5, size=(30000))
+        z = np.random.normal(scale=0.1, size=len(x))
+        
+        density = pdf(x) * pdf(y)
+        pdf_z = pdf(5 * z)
+        
+        density *= pdf_z
+        
+        a = x + y
+        b = 2 * y
+        c = a - b + z
+        
+        norm = np.sqrt(a.var() + b.var())
+        a /= norm
+        b /= norm
+        
+        
+        ###############################################################################
+        # Plot the figures
+        def plot_figs(fig_num, elev, azim):
+            fig = plt.figure(fig_num, figsize=(4, 3))
+            plt.clf()
+            ax = Axes3D(fig, rect=[0, 0, .95, 1], elev=elev, azim=azim)
+        
+            ax.scatter(a[::10], b[::10], c[::10], c=density[::10], marker='+', alpha=.4)
+            Y = np.c_[a, b, c]
+        
+            # Using SciPy's SVD, this would be:
+            # _, pca_score, V = scipy.linalg.svd(Y, full_matrices=False)
+        
+            pca = decomposition.PCA(n_components=3)
+            pca.fit(Y)
+            pca_score = pca.explained_variance_ratio_
+            V = pca.components_
+        
+            x_pca_axis, y_pca_axis, z_pca_axis = V.T * pca_score / pca_score.min()
+        
+            x_pca_axis, y_pca_axis, z_pca_axis = 3 * V.T
+            x_pca_plane = np.r_[x_pca_axis[:2], - x_pca_axis[1::-1]]
+            y_pca_plane = np.r_[y_pca_axis[:2], - y_pca_axis[1::-1]]
+            z_pca_plane = np.r_[z_pca_axis[:2], - z_pca_axis[1::-1]]
+            x_pca_plane.shape = (2, 2)
+            y_pca_plane.shape = (2, 2)
+            z_pca_plane.shape = (2, 2)
+            ax.plot_surface(x_pca_plane, y_pca_plane, z_pca_plane)
+            ax.w_xaxis.set_ticklabels([])
+            ax.w_yaxis.set_ticklabels([])
+            ax.w_zaxis.set_ticklabels([])
+            plt.savefig("pca_sample_%d.jpg" % fig_num)
+        
+        
+        elev = -40
+        azim = -80
+        plot_figs(1, elev, azim)
+        
+        elev = 30
+        azim = 20
+        plot_figs(2, elev, azim)
+
+    def plot_ica(self):
+        # Generate sample data
+        np.random.seed(0)
+        n_samples = 2000
+        time = np.linspace(0, 8, n_samples)
+        
+        s1 = np.sin(2 * time)  # Signal 1 : sinusoidal signal
+        s2 = np.sign(np.sin(3 * time))  # Signal 2 : square signal
+        s3 = signal.sawtooth(2 * np.pi * time)  # Signal 3: saw tooth signal
+        
+        S = np.c_[s1, s2, s3] # 縦に連結
+        S += 0.2 * np.random.normal(size=S.shape)  # Add noise
+        
+        S /= S.std(axis=0)  # Standardize data
+        # Mix data
+        A = np.array([[1, 1, 1], [0.5, 2, 1.0], [1.5, 1.0, 2.0]])  # Mixing matrix
+        X = np.dot(S, A.T)  # Generate observations(観察データということにする)
+        
+        # Compute ICA
+        ica = decomposition.FastICA(n_components=3)
+        S_  = ica.fit_transform(X)  # Reconstruct signals
+        A_  = ica.mixing_  # Get estimated mixing matrix
+        
+        # We can `prove` that the ICA model applies by reverting the unmixing.
+        assert np.allclose(X, np.dot(S_, A_.T) + ica.mean_)
+        
+        # For comparison, compute PCA
+        pca = decomposition.PCA(n_components=3)
+        H   = pca.fit_transform(X)  # Reconstruct signals based on orthogonal components
+        
+        ###############################################################################
+        # Plot results
+        
+        plt.figure()
+        
+        models = [X, S, S_, H]
+        names = ['Observations (mixed signal)',
+                 'True Sources',
+                 'ICA recovered signals', 
+                 'PCA recovered signals']
+        colors = ['red', 'steelblue', 'orange']
+        
+        for ii, (model, name) in enumerate(zip(models, names), 1):
+            plt.subplot(4, 1, ii)
+            plt.title(name)
+            for sig, color in zip(model.T, colors):
+                plt.plot(sig, color=color)
+        
+        plt.subplots_adjust(0.09, 0.04, 0.94, 0.94, 0.26, 0.46)
+        plt.savefig("ica.jpg")
+

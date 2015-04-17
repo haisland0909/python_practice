@@ -13,5 +13,13 @@ class Test_testunsupervisedlearningsample(unittest.TestCase):
         obj = unsupervisedlearningsample.KMeansSample()
         obj.plot_ward_cluster_lena()
 
+    def test_plot_pca(self):
+        obj = unsupervisedlearningsample.DecompositionsSample()
+        obj.plot_pca()
+
+    def test_plot_ica(self):
+        obj = unsupervisedlearningsample.DecompositionsSample()
+        obj.plot_ica()
+
 if __name__ == '__main__':
     unittest.main()
