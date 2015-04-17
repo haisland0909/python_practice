@@ -4,6 +4,8 @@ import scipy as sp
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 from sklearn import datasets, cluster
+from sklearn.feature_extraction.image import grid_to_graph
+from sklearn.cluster import AgglomerativeClustering
 class KMeansSample(object):
     def __init__(self):
         iris         = datasets.load_iris()
@@ -124,3 +126,25 @@ class KMeansSample(object):
             plt.axvline(.5 * (center_1 + center_2), color='b', linestyle='--')
 
         plt.savefig("lena_hist.jpg")
+
+    def plot_ward_cluster_lena(self):
+        lena = self._lena
+        # Downsample the image by a factor of 4
+        lena = lena[::2, ::2] + lena[1::2, ::2] + lena[::2, 1::2] + lena[1::2, 1::2]
+        X    = np.reshape(lena, (-1, 1))
+        # Define the structure A of the data. Pixels connected to their neighbors.
+        connectivity = grid_to_graph(*lena.shape)
+        # Compute clustering
+        print("Compute structured hierarchical clustering...")
+        n_clusters = 15  # number of regions
+        ward = AgglomerativeClustering(n_clusters=n_clusters,
+                linkage='ward', connectivity=connectivity).fit(X)
+        label = np.reshape(ward.labels_, lena.shape)
+        plt.figure()
+        plt.imshow(lena, cmap=plt.cm.gray)
+        for l in range(n_clusters):
+            plt.contour(label == l, contours=1,
+                        colors=[plt.cm.spectral(l / float(n_clusters)), ])
+        plt.xticks(())
+        plt.yticks(())
+        plt.savefig("lena_ward_cluster.jpg")

@@ -9,5 +9,9 @@ class Test_testunsupervisedlearningsample(unittest.TestCase):
         obj = unsupervisedlearningsample.KMeansSample()
         obj.plot_lena_k_mean()
 
+    def test_plot_ward_cluster_lena(self):
+        obj = unsupervisedlearningsample.KMeansSample()
+        obj.plot_ward_cluster_lena()
+
 if __name__ == '__main__':
     unittest.main()
