@@ -9,6 +9,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "modelselectionsample", "mod
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "unsupervisedlearningsample", "unsupervisedlearningsample\unsupervisedlearningsample.pyproj", "{08218DA8-442F-49DF-BDA0-B546F032C893}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "pipelinesample", "pipelinesample\pipelinesample.pyproj", "{6418E501-D599-4382-A7C1-D19520AEB47A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{F613ADD9-B437-4299-9934-6BF73D903303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08218DA8-442F-49DF-BDA0-B546F032C893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08218DA8-442F-49DF-BDA0-B546F032C893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6418E501-D599-4382-A7C1-D19520AEB47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6418E501-D599-4382-A7C1-D19520AEB47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
