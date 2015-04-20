@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ï»¿# -*- coding: utf-8 -*-
 # This code is supporting material for the book
 # Building Machine Learning Systems with Python
 # by Willi Richert and Luis Pedro Coelho
@@ -75,7 +75,7 @@ class Chap3Sample(object):
             self.do_kmean()
         new_post_vector  = self._vectorizer.transform([self._new_post])
         new_post_label   = self._kmean_solver.predict(new_post_vector)[0]
-        # “¯ˆêƒNƒ‰ƒXƒ^‚É‘¶İ‚·‚é‚à‚Ì‚Ì‚İ
+        # åŒä¸€ã‚¯ãƒ©ã‚¹ã‚¿ã«å­˜åœ¨ã™ã‚‹ã‚‚ã®ã®ã¿
         similar_indices  = (self._result_label == new_post_label).nonzero()[0]
         similar          = []
         for i in similar_indices:
