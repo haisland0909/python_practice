@@ -1,4 +1,4 @@
-# This code is supporting material for the book
+﻿# This code is supporting material for the book
 # Building Machine Learning Systems with Python
 # by Willi Richert and Luis Pedro Coelho
 # published by PACKT Publishing

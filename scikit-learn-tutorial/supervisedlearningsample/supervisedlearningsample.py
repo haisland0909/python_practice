@@ -5,6 +5,7 @@ from sklearn import datasets, linear_model, svm
 from matplotlib.colors import ListedColormap
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 from sklearn.decomposition import PCA
+from sklearn.metrics import precision_recall_curve, auc
 class KNearestSample(object):
     def __init__(self):
         self._iris = datasets.load_iris()
@@ -192,6 +193,7 @@ class LinearSample(object):
         plt.clf()
         plt.scatter(X.ravel(), y, color='black', zorder=20)
         X_test = np.linspace(-5, 10, 300)
+        y_test = (X_test > 5).astype(np.float)
         loss   = self.model(X_test * clf.coef_ + clf.intercept_).ravel()
         plt.plot(X_test, loss, color='blue', linewidth=3)
         
@@ -206,6 +208,24 @@ class LinearSample(object):
         plt.ylim(-.25, 1.25)
         plt.xlim(-4, 10)
         plt.savefig("logistics_regression.jpg")
+        X_test     = X_test[:, np.newaxis]
+        precision, recall, pr_thresholds = precision_recall_curve(
+            y_test, clf.predict(X_test))
+        test_score = clf.score(X_test, y_test)
+        auc_score  = auc(recall, precision)
+        self.plot_pr(auc_score, precision, recall)
+
+    def plot_pr(self, auc_score, precision, recall, label=None):
+        plt.figure(num=None, figsize=(6, 5))
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.0])
+        plt.xlabel('Recall')
+        plt.ylabel('Precision')
+        plt.title('P/R (AUC=%0.2f) / %s' % (auc_score, label))
+        plt.fill_between(recall, precision, alpha=0.5)
+        plt.grid(True, linestyle='-', color='0.75')
+        plt.plot(recall, precision, lw=1)
+        plt.savefig("precision_recall.png")
 
 class SVMSample(object):
     def __init__(self):
