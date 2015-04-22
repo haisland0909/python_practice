@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>dce426f6-a5b8-4f1a-8e21-41c0a3102257</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>chap8.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>chap8</Name>
+    <RootNamespace>chap8</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="chap8.py" />
+    <Compile Include="load_ml100k.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\ml-100k\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\.gitignore" />
+    <Content Include="data\ml-100k\allbut.pl" />
+    <Content Include="data\ml-100k\mku.sh" />
+    <Content Include="data\ml-100k\README" />
+    <Content Include="data\ml-100k\u.data" />
+    <Content Include="data\ml-100k\u.genre" />
+    <Content Include="data\ml-100k\u.info" />
+    <Content Include="data\ml-100k\u.item" />
+    <Content Include="data\ml-100k\u.occupation" />
+    <Content Include="data\ml-100k\u.user" />
+    <Content Include="data\ml-100k\u1.base" />
+    <Content Include="data\ml-100k\u1.test" />
+    <Content Include="data\ml-100k\u2.base" />
+    <Content Include="data\ml-100k\u2.test" />
+    <Content Include="data\ml-100k\u3.base" />
+    <Content Include="data\ml-100k\u3.test" />
+    <Content Include="data\ml-100k\u4.base" />
+    <Content Include="data\ml-100k\u4.test" />
+    <Content Include="data\ml-100k\u5.base" />
+    <Content Include="data\ml-100k\u5.test" />
+    <Content Include="data\ml-100k\ua.base" />
+    <Content Include="data\ml-100k\ua.test" />
+    <Content Include="data\ml-100k\ub.base" />
+    <Content Include="data\ml-100k\ub.test" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
